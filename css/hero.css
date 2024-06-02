@@ -1,0 +1,88 @@
+.shine {
+  color: #fff;
+  background: linear-gradient(to right, #d1d1d1 0, #fff 10%, #aaaaaa 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+}
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 500px;
+  }
+  100% {
+    background-position: 800px;
+  }
+}
+
+.btn-container {
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+
+.svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  transform: translate(-50%,-50%);
+  transition: 0.5s;
+}
+
+.btn {
+  background-color: #6E06D4;
+  z-index: 10;
+  color: white;
+  padding: 0.5rem 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  transition: 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+.btn-container:hover {
+  box-shadow: #6E06D4 0px 0px 54px;
+}
+
+.btn:hover {
+  outline: #6E06D4 solid 2px;
+  background-color: #212121;
+}
+
+.btn-container:hover > .svg-1 {
+  transform: translate(130%,50%);
+}
+
+.btn-container:hover > .svg-2 {
+  transform: translate(-120%,-150%) rotate(30deg);
+}
+
+.btn-container:hover > .svg-3 {
+  transform: translate(60%,-150%) rotate(-45deg);
+}
+
+.btn-container:hover > .svg-4 {
+  transform: translate(-280%,0%) rotate(30deg);
+}
+
+.btn-container:hover > .svg-5 {
+  transform: translate(-80%,60%) rotate(-45deg);
+}
+
+.btn:active {
+  transform: scale(1.05);
+}
+
+
+.moon-bg {
+  background-image: url('/moon.png');
+}

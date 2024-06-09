@@ -4,7 +4,9 @@ import ShaderGradientPage from "@/components/ShaderGradient";
 import React, { useEffect, useState } from "react";
 import useLenis from "../components/lenis";
 import "../css/loader.css";
-import Apolo11 from "@/components/Apolo11";
+import Apollo11 from "@/components/Apollo11";
+import Experience from "@/components/Experience";
+import Video from "@/components/Video";
 
 const App = () => {
   useLenis();
@@ -32,9 +34,12 @@ const App = () => {
     <div>
       <ShaderGradientPage></ShaderGradientPage>
 
-       <Rocket3D></Rocket3D>     
+      <Rocket3D></Rocket3D>      
 
-      <Apolo11></Apolo11>
+      <Apollo11></Apollo11>
+      <Experience></Experience>
+      <Video></Video>
+      
     </div>
   );
 };

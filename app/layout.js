@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Apollo 11 | Mission",
-  description: "Education about apolo 11 mission",
+  description: "Education about Apollo 11 mission",
 };
 
 export default function RootLayout({ children }) {

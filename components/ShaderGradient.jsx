@@ -24,10 +24,13 @@ const ShaderGradientPage = () => {
         alt="mesh gradient"
         className="w-[100vw] h-[100vh]"
       />
-      <div className="absolute  top-52 left-10">
+      <div className="absolute  top-52 sm:left-10 left-3">
         <div id="text">
           <div className="line">
-            <h1 id="channel-link" className="word fancy w-[1000px] text-6xl">
+            <h1
+              id="channel-link"
+              className="word fancy sm:max-w-[1000px] lg:text-6xl md:text-4xl sm:text-3xl text-xl"
+            >
               <span className="letter">&quot;</span>
               <span className="letter">O</span>
               <span className="letter">n</span>
@@ -86,7 +89,7 @@ const ShaderGradientPage = () => {
           </div>
           <br />
           <div className="line">
-            <h1 id="channel-link" className="word fancy text-xl">
+            <h1 id="channel-link" className="word fancy sm:text-xl text-lg  ">
               <span className="letter">N</span>
               <span className="letter">e</span>
               <span className="letter">i</span>
@@ -102,7 +105,8 @@ const ShaderGradientPage = () => {
               <span className="letter">n</span>
               <span className="letter">g</span>
             </h1>
-            <a className="sound"
+            <a
+              className="sound"
               target="_blank"
               href="https://sk.wikipedia.org/wiki/S%C3%BAbor:Phrase_de_Neil_Armstrong.oga"
             >
@@ -663,7 +667,7 @@ const ShaderGradientPage = () => {
       </div>
 
       <div className="absolute xs:bottom-5 bottom-2  w-full flex justify-center items-center">
-        <a href="#about">
+        <a href="#astronauts" >
           {window.innerWidth > 1280 && (
             <div className="w-[35px ] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
               <motion.div

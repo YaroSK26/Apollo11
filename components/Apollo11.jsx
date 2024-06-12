@@ -1,4 +1,4 @@
-import "../css/Apollo11.css";
+import "../css/apollo11.css";
 
 const Apollo11 = () => {
   return (

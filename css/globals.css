@@ -71,3 +71,19 @@ body {
     background-position: 0% 50%
   }
 }
+.magneto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: url("/moon.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0 0px 150px -3px #6E06D4, 0 0px 6px -2px #6E06D4;
+  color: #6E06D4;
+  font-weight: 600;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

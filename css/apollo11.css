@@ -46,11 +46,16 @@
   transform: scale(1.04);
 }
 
-.circle, .circle2, .circle3, .circle4 {
+.circle, .circle2, .circle3 {
   width: 100px;
   height: 100px;
   background: radial-gradient(#6c28b0, #6E06D4);
   border-radius: 50%;
+  position: absolute;
+  animation: move-up6 2s ease-in infinite alternate-reverse;
+}
+
+.circle4{
   position: absolute;
   animation: move-up6 2s ease-in infinite alternate-reverse;
 }
@@ -89,31 +94,21 @@
 }
 
 .circle4:nth-child(2) {
- top: -80px;
+ top: -85px;
 left: 0px;
 }
 
  .circle4:nth-child(1) {
-   bottom: -80px;
+   bottom: -85px;
   right: 0px;
   animation-name: move-down1;
   z-index: 100;
 } 
 
-@media (max-width: 380px) {
+@media (max-width: 420px) {
  .circle4 {
-      width: 50px;
-  height: 50px;
-  }
-
-  .circle4:nth-child(2) {
- top: -60px;
-}
-
- .circle4:nth-child(1) {
-   bottom: -60px;
-} 
-}
+  display: none;
+}}
 
 @keyframes move-up6 {
   to {

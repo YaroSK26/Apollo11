@@ -7,6 +7,7 @@ import "../css/loader.css";
 import Apollo11 from "@/components/Apollo11";
 import Experience from "@/components/Experience";
 import Video from "@/components/Video";
+import Footer from "@/components/Footer";
 
 const App = () => {
   useLenis();
@@ -39,6 +40,7 @@ const App = () => {
       <Apollo11></Apollo11>
       <Experience></Experience>
       <Video></Video>
+      <Footer></Footer>
       
     </div>
   );

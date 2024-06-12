@@ -5,7 +5,7 @@ import "../css/hero.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Apollo 11 | Mission",
+  title: "Apollo 11 |  Mission",
   description: "Education about Apollo 11 mission",
 };
 

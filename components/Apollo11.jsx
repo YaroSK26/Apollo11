@@ -7,10 +7,10 @@ const Apollo11 = () => {
       className="relative bg-[#080808] flex justify-center items-center flex-col sm:gap-20 gap-10 pt-10"
     >
       <h1 className="md:text-5xl sm:text-4xl text-2xl text-center relative">
-        <p className="flex justify-center items-center sm:flex-row flex-col gap-5">
+        <p className="flex  justify-center items-center sm:flex-row flex-col gap-5">
           Mission Apollo 11
           <img
-            className="w-20"
+            className="w-20 animate-pulse"
             src="/apollo11Logo.png"
             alt="Logo of Apollo 11 mission"
           />

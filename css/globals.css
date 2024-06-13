@@ -24,6 +24,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    overflow-x: hidden;
 }
 
 @layer utilities {
@@ -47,7 +48,7 @@ body {
   backdrop-filter: blur(10px); 
 }
 
-
+/*!gold text  */
 .gold {
      background-image: repeating-linear-gradient(to right, #a2682a 0%, #be8c3c 8%, #be8c3c 18%, #d3b15f 27%, #faf0a0 35%, #ffffc2 40%, #faf0a0 50%, #d3b15f 58%, #be8c3c 67%, #b17b32 77%, #bb8332 83%, #d4a245 88%, #e1b453 93%, #a4692a 100%);
   background-size: 150%;
@@ -71,6 +72,8 @@ body {
     background-position: 0% 50%
   }
 }
+
+/*!moon cursor follower*/
 .magneto {
   width: 100px;
   height: 100px;
@@ -82,8 +85,61 @@ body {
   color: #6E06D4;
   font-weight: 600;
   font-size: 20px;
-  cursor: pointer;
+  cursor: default;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/*!slider*/
+
+/* Pre Chrome, Edge a Safari */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6E06D4;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080808;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6E06D4;
+}
+
+/* Pre Firefox */
+html {
+    scrollbar-color: #6E06D4 #3e3e3e;
+    scrollbar-width: thin;
+}
+
+
+
+/*!cursor*/
+
+.star {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, white, transparent);
+clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);    pointer-events: none;
+    animation: fadeOut 1s forwards;
+    overflow: hidden;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.5);
+    }
 }

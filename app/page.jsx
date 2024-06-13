@@ -31,17 +31,28 @@ const App = () => {
     );
   }
 
+  document.addEventListener("mousemove", (event) => {
+    const star = document.createElement("div");
+    star.classList.add("star");
+    star.style.left = `${event.pageX}px`;
+    star.style.top = `${event.pageY}px`;
+    document.body.appendChild(star);
+
+    setTimeout(() => {
+      star.remove();
+    }, 1000);
+  });
+
   return (
     <div>
       <ShaderGradientPage></ShaderGradientPage>
 
-      <Rocket3D></Rocket3D>      
+      {/* <Rocket3D></Rocket3D>       */}
 
       <Apollo11></Apollo11>
       <Experience></Experience>
       <Video></Video>
       <Footer></Footer>
-      
     </div>
   );
 };

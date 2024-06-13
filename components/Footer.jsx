@@ -67,7 +67,7 @@ const Footer = () => {
           <p>
             &copy; Created by&nbsp;
             <a
-              className="border-b-white border-b-2 shine "
+              className="border-b-white border-b-2 shine cursor-pointer "
               href="https://www.jaroslav.website/"
               target="_blank"
             >

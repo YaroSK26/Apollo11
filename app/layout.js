@@ -9,6 +9,8 @@ export const metadata = {
   description: "Education about Apollo 11 mission",
 };
 
+
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

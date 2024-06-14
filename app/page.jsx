@@ -10,6 +10,22 @@ import Video from "@/components/Video";
 import Footer from "@/components/Footer";
 
 const App = () => {
+
+
+  function useScript(src) {
+    useEffect(() => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.defer = true;
+      script.dataset.useServiceCore = true;
+      document.body.appendChild(script);
+
+      return () => {
+        document.body.removeChild(script);
+      };
+    }, [src]);
+  }
+  useScript("https://static.elfsight.com/platform/platform.js");
   useLenis();
 
   const [loading, setLoading] = useState(true);
@@ -52,6 +68,7 @@ const App = () => {
       <Apollo11></Apollo11>
       <Experience></Experience>
       <Video></Video>
+
       <Footer></Footer>
     </div>
   );

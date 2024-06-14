@@ -143,3 +143,20 @@ clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%,
         transform: scale(0.5);
     }
 }
+
+/*!image follower*/
+
+ .swipeimage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  z-index: 9;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  border-radius: 50%;
+}
+

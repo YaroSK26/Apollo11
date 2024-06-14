@@ -1,4 +1,5 @@
 "use client";
+import React, { useEffect, useRef } from "react";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -12,8 +13,51 @@ import { MdAddAPhoto } from "react-icons/md";
 import { GiApolloCapsule } from "react-icons/gi";
 import { FaUserAstronaut } from "react-icons/fa";
 import { FaMedal } from "react-icons/fa";
+import gsap from "gsap";
 
 const Experience = () => {
+
+useEffect(() => {
+ gsap.set(".container img.swipeimage", { yPercent: -50, xPercent: -50 });
+
+ let activeImage;
+ gsap.utils.toArray(".container").forEach((el) => {
+   let image = el.querySelector("img.swipeimage"),
+     setX,
+     setY,
+     align = (e) => {
+       setX(e.clientX);
+       setY(e.clientY);
+     },
+     startFollow = () => document.addEventListener("mousemove", align),
+     stopFollow = () => document.removeEventListener("mousemove", align),
+     fade = gsap.to(image, {
+       autoAlpha: 1,
+       ease: "none",
+       paused: true,
+       onReverseComplete: stopFollow,
+     });
+
+   el.addEventListener("mouseenter", (e) => {
+     fade.play();
+     startFollow();
+     if (activeImage) {
+       // if there's an actively-animating one, we should match its position here
+       gsap.set(image, {
+         x: gsap.getProperty(activeImage, "x"),
+         y: gsap.getProperty(activeImage, "y"),
+       });
+     }
+     activeImage = image;
+     (setX = gsap.quickTo(image, "x", { duration: 0.6, ease: "power3" })),
+       (setY = gsap.quickTo(image, "y", { duration: 0.6, ease: "power3" }));
+     align(e);
+   });
+
+   el.addEventListener("mouseleave", () => fade.reverse());
+ });
+}, []);
+
   return (
     <div className="bg-[#080808]">
       <VerticalTimeline visible={true} animate={true}>
@@ -169,7 +213,18 @@ const Experience = () => {
           visible={true}
         ></VerticalTimelineElement>
       </VerticalTimeline>
-      <h1 className="z-100 text-center pt-4 text-2xl  gold">Mission completed!</h1>
+      <div className="container w-72 mx-auto">
+        <img
+          className="swipeimage"
+          src="/Apollo11_LandingontheMoon.jpeg"
+        ></img>
+
+        <h1
+          className=" text z-10 text-center pt-4 text-2xl gold"
+        >
+          Mission completed!
+        </h1>
+      </div>
     </div>
   );
 };

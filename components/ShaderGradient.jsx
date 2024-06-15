@@ -17,6 +17,19 @@ const ShaderGradientPage = () => {
     });
   }, []);
 
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    gsap.to(imageRef.current, {
+      y: "-20px",
+      x: "60px",
+      repeat: -1,
+      yoyo: true,
+      duration: 2,
+      ease: "power1.inOut",
+    });
+  }, []);
+
   return (
     <div className="relative">
       <img
@@ -24,6 +37,13 @@ const ShaderGradientPage = () => {
         alt="mesh gradient"
         className="w-[100vw] h-[100vh]"
       />
+      <img
+        ref={imageRef}
+        className="absolute sm:w-40 w-24 sm:top-[400px] top-[300px] right-16 sm:right-52 z-[100] "
+        src="/spaceman.webp"
+        alt="spaceman"
+      />
+
       <div className="absolute  top-52 sm:left-10 left-3">
         <div id="text">
           <div className="line">
@@ -117,10 +137,10 @@ const ShaderGradientPage = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-volume-2"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-volume-2"
               >
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
@@ -129,7 +149,7 @@ const ShaderGradientPage = () => {
             </a>
           </div>
         </div>
-        <a href="#astronauts">
+        <a className="w-[149px] block" href="#astronauts">
           <div className="btn-container mt-6 " ref={elementRef}>
             <div className="svg svg-1">
               <svg

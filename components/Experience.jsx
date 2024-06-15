@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect,useRef } from "react";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -13,7 +13,8 @@ import { MdAddAPhoto } from "react-icons/md";
 import { GiApolloCapsule } from "react-icons/gi";
 import { FaUserAstronaut } from "react-icons/fa";
 import { FaMedal } from "react-icons/fa";
-import gsap from "gsap";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Experience = () => {
 
@@ -58,9 +59,24 @@ useEffect(() => {
  });
 }, []);
 
+
+
+ const alienImageRef = useRef(null);
+
+useEffect(() => {
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".alien-image", {
+  y: 40,
+  duration: 3,
+  scrollTrigger: { trigger: ".alien-image", start: "top bottom" },
+});
+
+}, []);
+
   return (
-    <div className="bg-[#080808]">
-      <VerticalTimeline visible={true} animate={true}>
+    <div className="bg-[#080808] relative max-w-[1500px] mx-auto">
+      <VerticalTimeline className="z-10" visible={true} animate={true}>
         <VerticalTimelineElement
           className="vertical-timeline-element--work"
           contentStyle={{ background: "#6E06D4", color: "#fff" }}
@@ -109,9 +125,8 @@ useEffect(() => {
             checking systems and preparing for the landing.
           </p>
         </VerticalTimelineElement>
-
         <VerticalTimelineElement
-          className="vertical-timeline-element--work"
+          className="vertical-timeline-element--work relative z-[100]"
           date="July 20, 1969"
           contentArrowStyle={{ borderRight: "7px solid  #6E06D4" }}
           iconStyle={{ background: "#903fd1", color: "#fff" }}
@@ -213,15 +228,16 @@ useEffect(() => {
           visible={true}
         ></VerticalTimelineElement>
       </VerticalTimeline>
+      <img
+        src="/alien.png"
+        ref={alienImageRef}
+        className="absolute w-20 alien-image left-44 z-0 -top-4 overflow-hidden"
+        alt="alien"
+      />
       <div className="container w-72 mx-auto">
-        <img
-          className="swipeimage"
-          src="/Apollo11_LandingontheMoon.jpeg"
-        ></img>
+        <img className="swipeimage" src="/Apollo11_LandingontheMoon.jpeg"></img>
 
-        <h1
-          className=" text z-10 text-center pt-4 text-2xl gold"
-        >
+        <h1 className=" text z-10 text-center pt-4 text-2xl gold">
           Mission completed!
         </h1>
       </div>

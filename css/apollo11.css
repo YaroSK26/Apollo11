@@ -58,6 +58,7 @@
 .circle4{
   position: absolute;
   animation: move-up6 2s ease-in infinite alternate-reverse;
+  z-index: 100;
 }
 
 .circle:nth-child(1) {

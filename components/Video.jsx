@@ -1,12 +1,32 @@
 import { useEffect, useRef } from "react";
 import { gsap, Power4, Elastic } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
+
+const slideIn = (direction, type, delay, duration) => ({
+  hidden: {
+    x: direction === "left" ? "-100%" : direction === "right" ? "100%" : 0,
+    y: direction === "up" ? "-100%" : direction === "down" ? "100%" : 0,
+  },
+  show: {
+    x: 0,
+    y: 0,
+    transition: {
+      type: type,
+      delay: delay,
+      duration: duration,
+      ease: "easeOut",
+    },
+  },
+});
 
 const Video = () => {
   const magnetoRefs = useRef([]);
   const magnetoTextRefs = useRef([]);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     magnetoRefs.current.forEach((magneto, index) => {
       const magnetoText = magnetoTextRefs.current[index];
 
@@ -61,46 +81,49 @@ const Video = () => {
     });
   }, []);
 
-  //counter
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
-useEffect(() => {
-  gsap.registerPlugin(ScrollTrigger);
+    const counter = (id, start, end, duration) => {
+      let obj = document.getElementById(id),
+        current = start,
+        range = end - start,
+        increment = end > start ? 1 : -1,
+        step = Math.abs(Math.floor(duration / range)),
+        timer = setInterval(() => {
+          current += increment;
+          obj.textContent = current;
+          if (current == end) {
+            clearInterval(timer);
+          }
+        }, step);
+    };
 
-  const counter = (id, start, end, duration) => {
-    let obj = document.getElementById(id),
-      current = start,
-      range = end - start,
-      increment = end > start ? 1 : -1,
-      step = Math.abs(Math.floor(duration / range)),
-      timer = setInterval(() => {
-        current += increment;
-        obj.textContent = current;
-        if (current == end) {
-          clearInterval(timer);
-        }
-      }, step);
-  };
+    const counters = [
+      { id: "count1", start: 0, end: 55, duration: 3000 },
+      { id: "count2", start: 100, end: 600, duration: 3500 },
+      { id: "count3", start: 0, end: 8, duration: 4000 },
+    ];
 
-  const counters = [
-    { id: "count1", start: 0, end: 55, duration: 3000 },
-    { id: "count2", start: 100, end: 600, duration: 3500 },
-    { id: "count3", start: 0, end: 8, duration: 4000 },
-  ];
-
-  counters.forEach(({ id, start, end, duration }) => {
-    ScrollTrigger.create({
-      trigger: `#${id}`,
-      start: "top bottom",
-      onEnter: () => counter(id, start, end, duration),
+    counters.forEach(({ id, start, end, duration }) => {
+      ScrollTrigger.create({
+        trigger: `#${id}`,
+        start: "top bottom",
+        onEnter: () => counter(id, start, end, duration),
+      });
     });
-  });
-}, []);
+  }, []);
 
   return (
-    <div className=" bg-[#080808] flex justify-center items-center flex-col pb-28   bg-video pt-5">
+    <div className="bg-[#080808] flex justify-center items-center flex-col pb-28 bg-video pt-5">
       <section className="text-white py-5">
         <div className="flex justify-center items-center gap-10">
-          <div className="flex flex-col md:flex-row justify-around items-center px-4 py-8 my-20 bg-transparent rounded-2xl border-x-[3px] border-[#6E06D4] shadow-lg-2">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            variants={slideIn("left", "spring", 0.2, 2)}
+            className="flex flex-col md:flex-row justify-around items-center px-4 py-8 my-20 bg-transparent rounded-2xl border-x-[3px] border-[#6E06D4] shadow-lg-2"
+          >
             <div className="w-52 text-center flex justify-center items-center flex-col p-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -130,7 +153,12 @@ useEffect(() => {
               </h2>
               <p>years ago</p>
             </div>
-            <div className="w-52 text-center flex justify-center items-center flex-col p-4">
+            <div
+              className="w-52 text-center flex justify-center items-center flex-col p-4"
+              initial="hidden"
+              whileInView="show"
+              variants={slideIn("left", "spring", 0.2, 1)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="56"
@@ -154,7 +182,7 @@ useEffect(() => {
               </h2>
               <p>millions people watching the mission </p>
             </div>
-            <div className=" w-52 text-center flex justify-center items-center flex-col p-4">
+            <div className="w-52 text-center flex justify-center items-center flex-col p-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="56"
@@ -175,16 +203,28 @@ useEffect(() => {
               <h2 id="count3" className="text-3xl font-bold text-[#6E06D4]">
                 8
               </h2>
-              <p>days of the mission</p>
+              <p>days in the space</p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <h1 className="text-center text-5xl py-10">Landing</h1>
+      <motion.h1
+        initial="hidden"
+        whileInView="show"
+        variants={slideIn("up", "spring", 0.2, 2)}
+        className="text-center text-5xl py-10"
+      >
+        Landing
+      </motion.h1>
 
       <div className="relative">
-        <div className="circle4">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          variants={slideIn("left", "spring", 0.2, 2)}
+          className="circle4"
+        >
           <button
             ref={(el) => (magnetoRefs.current[0] = el)}
             className="magneto"
@@ -196,8 +236,13 @@ useEffect(() => {
               Moon
             </span>
           </button>
-        </div>
-        <div className="circle4">
+        </motion.div>
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          variants={slideIn("right", "spring", 0.2, 2)}
+          className="circle4"
+        >
           <button
             ref={(el) => (magnetoRefs.current[1] = el)}
             className="magneto"
@@ -209,18 +254,20 @@ useEffect(() => {
               Moon
             </span>
           </button>
-        </div>
-        <video
-          className="rounded-3xl border-x-[3px] border-[#6E06D4] shadow-lg-2 "
+        </motion.div>
+        <motion.video
+          className="rounded-3xl border-x-[3px] border-[#6E06D4] shadow-lg-2"
           controls
           width="640"
           height="264"
           poster="/video-bg.webp"
+          initial="hidden"
+          whileInView="show"
+          variants={slideIn("left", "spring", 0.2, 1)}
         >
           <source src="/Apollo11_LandingontheMoon.mp4" type="video/mp4" />
-        </video>
+        </motion.video>
       </div>
-      
     </div>
   );
 };

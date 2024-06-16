@@ -1,12 +1,35 @@
 import "../css/apollo11.css";
+import { motion } from "framer-motion";
 
 const Apollo11 = () => {
+  const slideIn = (direction, type, delay, duration) => ({
+    hidden: {
+      x: direction === "left" ? "-100%" : direction === "right" ? "100%" : 0,
+      y: direction === "up" ? "-100%" : direction === "down" ? "100%" : 0,
+    },
+    show: {
+      x: 0,
+      y: 0,
+      transition: {
+        type: type,
+        delay: delay,
+        duration: duration,
+        ease: "easeOut",
+      },
+    },
+  });
+
   return (
     <div
       id="astronauts"
-      className="relative bg-[#080808] flex justify-center items-center flex-col sm:gap-20 gap-10 pt-10"
+      className="relative bg-[#080808] flex justify-center items-center flex-col sm:gap-20 gap-10 pt-24"
     >
-      <h1 className="md:text-5xl sm:text-4xl text-2xl text-center relative">
+      <motion.h1
+        initial="hidden"
+        whileInView="show"
+        variants={slideIn("up", "spring", 0.2, 2)}
+        className="md:text-5xl sm:text-4xl text-2xl  text-center relative mb-2"
+      >
         <p className="flex  justify-center items-center sm:flex-row flex-col gap-5">
           Mission Apollo 11
           <img
@@ -19,8 +42,13 @@ const Apollo11 = () => {
           <img src="/arrow.gif" alt="arrow" />
           <p className="text-sm">Astronauts</p>
         </div>
-      </h1>
-      <div className="flex lg:flex-row flex-col lg:gap-60 gap-32 pb-5 pt-32 sm:pt-0">
+      </motion.h1>
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        variants={slideIn("left", "spring", 0.2, 2)}
+        className="flex lg:flex-row flex-col lg:gap-60 gap-32 pb-5 pt-32 sm:pt-0"
+      >
         <div className="flex flex-col gap-20 justify-center items-center">
           <div className="card card1">
             <div className="circle"></div>
@@ -71,7 +99,7 @@ const Apollo11 = () => {
             <br /> <span className=" text-[18px]">Lunar module pilot</span>
           </h1>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

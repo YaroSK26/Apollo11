@@ -1,10 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import "../css/letter.css";
 
 const ShaderGradientPage = () => {
+  gsap.registerPlugin(ScrollTrigger);
+
   const elementRef = useRef(null);
 
   useEffect(() => {
@@ -30,13 +33,46 @@ const ShaderGradientPage = () => {
     });
   }, []);
 
+  const slideIn = (direction, type, delay, duration) => ({
+    hidden: {
+      x: direction === "left" ? "-100%" : direction === "right" ? "100%" : 0,
+      y: direction === "up" ? "-100%" : direction === "down" ? "100%" : 0,
+    },
+    show: {
+      x: 0,
+      y: 0,
+      transition: {
+        type: type,
+        delay: delay,
+        duration: duration,
+        ease: "easeOut",
+      },
+    },
+  });
+
+
+   const iframeRef = useRef(null);
+
+   useEffect(() => {
+     gsap.to(iframeRef.current, {
+       x: () => window.innerWidth + iframeRef.current.offsetWidth,
+       y: () => window.innerHeight + iframeRef.current.offsetHeight,
+       scrollTrigger: {
+         trigger: iframeRef.current,
+         start: "bottom bottom",
+         end: "top top",
+         scrub: 1, 
+       },
+     });
+   }, []);
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden ">
       <img
         src="/mesh.png"
         alt="mesh gradient"
         className="w-[100vw] h-[100vh]"
       />
+
       <img
         ref={imageRef}
         className="absolute sm:w-40 w-24 sm:top-[400px] top-[300px] right-16 sm:right-52 z-[100] "
@@ -44,7 +80,12 @@ const ShaderGradientPage = () => {
         alt="spaceman"
       />
 
-      <div className="absolute  top-52 sm:left-10 left-3">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        variants={slideIn("left", "spring", 0.2, 2)}
+        className="absolute  top-52 sm:left-10 left-3"
+      >
         <div id="text">
           <div className="line">
             <h1
@@ -149,7 +190,7 @@ const ShaderGradientPage = () => {
             </a>
           </div>
         </div>
-        <a className="w-[149px] block" href="#astronauts">
+        <a className="w-[160px] block" href="#astronauts">
           <div className="btn-container mt-6 " ref={elementRef}>
             <div className="svg svg-1">
               <svg
@@ -686,9 +727,20 @@ const ShaderGradientPage = () => {
             <div className="btn anim">See more</div>
           </div>
         </a>
-      </div>
+      </motion.div>
 
-      <div className="absolute xs:bottom-5 bottom-2  w-full flex justify-center items-center">
+      <iframe
+        className="z-[10000] absolute -top-10 -left-52 overflow-y-hidden"
+        ref={iframeRef}
+        src="https://lottie.host/embed/54bae342-18ba-4a53-ae39-71d37864b260/EKvSaVX4im.json"
+      ></iframe>
+
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        variants={slideIn("up", "spring", 0.2, 2)}
+        className="absolute xs:bottom-5 bottom-2  w-full flex justify-center items-center"
+      >
         <a href="#astronauts">
           {window.innerWidth > 1280 && (
             <div className="w-[35px ] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
@@ -704,7 +756,7 @@ const ShaderGradientPage = () => {
             </div>
           )}
         </a>
-      </div>
+      </motion.div>
     </div>
   );
 };

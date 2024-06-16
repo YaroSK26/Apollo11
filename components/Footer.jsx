@@ -1,14 +1,40 @@
-import React from "react";
+import { motion } from "framer-motion";
 
 const Footer = () => {
+  const slideIn = (direction, type, delay, duration) => ({
+    hidden: {
+      x: direction === "left" ? "-40%" : direction === "right" ? "40%" : 0,
+      y: direction === "up" ? "-10%" : direction === "down" ? "10%" : 0,
+    },
+    show: {
+      x: 0,
+      y: 0,
+      transition: {
+        type: type,
+        delay: delay,
+        duration: duration,
+        ease: "easeOut",
+      },
+    },
+  });
   return (
-    <div>
-      <hr className="border-t-2 border-t-[#6E06D4] w-[60%] mx-auto" />
+    <motion.div
+      initial="hidden"
+      whileInView="show"
+      variants={slideIn("up", "spring", 0.2, 2)}
+      className="z-0 relative"
+    >
+      <hr className="border-t-2 border-t-[#6E06D4] mx-auto sm:w-[60%] w-[100%] sm:left-[20%] left-0 absolute" />
 
       <footer className="p-2 pt-12 bg-[#080808]  text-2xl  flex-row flex justify-center items-center ">
         <div>
           <div className="flex gap-10 justify-center items-center mb-3">
-            <section className="flex justify-center items-center">
+            <motion.section
+              initial="hidden"
+              whileInView="show"
+              variants={slideIn("left", "spring", 0.2, 2)}
+              className="flex justify-center items-center"
+            >
               <a
                 className="group flex justify-center p-2 rounded-md drop-shadow-xl bg-gradient-to-r  text-white font-semibold hover:scale-[1.1] hover:rounded-[50%] transition-all duration-500 from-gray-800  to-[#6E06D4]"
                 href="https://github.com/YaroSK26?tab=repositories"
@@ -33,9 +59,14 @@ const Footer = () => {
                   GitHub
                 </span>
               </a>
-            </section>
+            </motion.section>
 
-            <section className="flex justify-center items-center">
+            <motion.section
+              initial="hidden"
+              whileInView="show"
+              variants={slideIn("right", "spring", 0.2, 2)}
+              className="flex justify-center items-center"
+            >
               <a
                 className="group flex justify-center p-2 rounded-md drop-shadow-xl bg-gradient-to-r  text-white font-semibold hover:scale-[1.1] hover:rounded-[50%] transition-all duration-500 from-gray-800 to-[#6E06D4]"
                 href="https://www.instagram.com/jaroslav_barabas/"
@@ -61,10 +92,15 @@ const Footer = () => {
                   Instagram
                 </span>
               </a>
-            </section>
+            </motion.section>
           </div>
           <div>
-            <p className="text-center">
+            <motion.p
+              initial="hidden"
+              whileInView="show"
+              variants={slideIn("up", "spring", 0.2, 2)}
+              className="text-center sm:text-2xl text-xl"
+            >
               &copy; Created by&nbsp;
               <a
                 className="border-b-white border-b-2 shine cursor-pointer"
@@ -73,11 +109,11 @@ const Footer = () => {
               >
                 Jaroslav Barabáš
               </a>
-            </p>
+            </motion.p>
           </div>
         </div>
       </footer>
-    </div>
+    </motion.div>
   );
 };
 

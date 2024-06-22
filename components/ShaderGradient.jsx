@@ -730,7 +730,7 @@ const ShaderGradientPage = () => {
       </motion.div>
 
       <iframe
-        className="z-[10000] absolute -top-10 -left-52 overflow-y-hidden"
+        className="z-[100] absolute -top-10 -left-52 overflow-y-hidden"
         ref={iframeRef}
         src="https://lottie.host/embed/54bae342-18ba-4a53-ae39-71d37864b260/EKvSaVX4im.json"
       ></iframe>

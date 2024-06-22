@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { gsap, Power4, Elastic } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import "../css/banner.css";
 
 const slideIn = (direction, type, delay, duration) => ({
   hidden: {
@@ -218,7 +219,54 @@ const Video = () => {
         Landing
       </motion.h1>
 
-      <div className="relative">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        variants={slideIn("left", "spring", 0.2, 2)}
+        className="banner"
+      >
+        <div className="slider" style={{ "--quantity": 10 }}>
+          <div className="item" style={{ "--position": 1 }}>
+            <img src="/img-1.webp" alt="apollo spaceship " />
+          </div>
+          <div className="item" style={{ "--position": 2 }}>
+            <img src="/img-2.jpg" alt="astronauts" />
+          </div>
+          <div className="item" style={{ "--position": 3 }}>
+            <img src="/img-3.jpg" alt="rocket" />
+          </div>
+          <div className="item" style={{ "--position": 4 }}>
+            <img src="/img-4.jpg" alt="astronaut" />
+          </div>
+          <div className="item" style={{ "--position": 5 }}>
+            <img src="/img-5.jpg" alt="footprint" />
+          </div>
+          <div className="item" style={{ "--position": 6 }}>
+            <img src="/img-6.avif" alt="module" />
+          </div>
+          <div className="item" style={{ "--position": 7 }}>
+            <img src="/img-7.webp" alt="training" />
+          </div>
+          <div className="item" style={{ "--position": 8 }}>
+            <img src="/img-8.jpg" alt="setup" />
+          </div>
+          <div className="item" style={{ "--position": 9 }}>
+            <img src="/video-bg.webp" alt="astronaut" />
+          </div>
+          <div className="item" style={{ "--position": 10 }}>
+            <img src="/img-9.jpg" alt="view" />
+          </div>
+        </div>
+        <div className="content">
+          <h1 data-content="Apollo 11" className="mx-auto">
+            Apollo 11{" "}
+          </h1>
+
+          <div className="model"></div>
+        </div>
+      </motion.div>
+
+      <div className="relative mt-40">
         <motion.div
           initial="hidden"
           whileInView="show"

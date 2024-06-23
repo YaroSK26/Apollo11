@@ -132,6 +132,11 @@ html {
 clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);    pointer-events: none;
     animation: fadeOut 1s forwards;
     overflow: hidden;
+    
+}
+
+*{
+ cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%236E06D4" stroke="%23ffffff" width="20px" height="20px" viewBox="0 0 10.04 10.04"><circle cx="5.02" cy="5.02" r="4.52"/></svg>') 10 10, auto;
 }
 
 @keyframes fadeOut {

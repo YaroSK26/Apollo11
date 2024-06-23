@@ -264,7 +264,7 @@ const Experience = () => {
           initial="hidden"
           whileInView="show"
           variants={slideIn("down", "spring", 0.2, 2)}
-          className=" text z-10 text-center pt-4 text-2xl gold"
+          className=" text z-10 text-center pt-4 text-2xl gold pb-10"
         >
           Mission completed!
         </motion.h1>

@@ -28,6 +28,27 @@ const App = () => {
   useScript("https://static.elfsight.com/platform/platform.js");
   useLenis();
 
+const [showRocket, setShowRocket] = useState(false);
+
+useEffect(() => {
+  const checkScreenSize = () => {
+    if (window.innerWidth >= 1500) {
+      setShowRocket(true);
+    } else {
+      setShowRocket(false);
+    }
+  };
+
+  window.addEventListener("resize", checkScreenSize);
+
+  // Call the function initially to check if the screen size is already 1500px or more
+  checkScreenSize();
+
+  return () => {
+    window.removeEventListener("resize", checkScreenSize);
+  };
+}, []);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -62,13 +83,10 @@ const App = () => {
   return (
     <div>
       <ShaderGradientPage></ShaderGradientPage>
-
-      {/* <Rocket3D></Rocket3D>       */}
-
       <Apollo11></Apollo11>
       <Experience></Experience>
+      {showRocket && <Rocket3D />}
       <Video></Video>
-
       <Footer></Footer>
     </div>
   );

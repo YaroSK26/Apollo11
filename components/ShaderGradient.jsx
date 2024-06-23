@@ -33,6 +33,8 @@ const ShaderGradientPage = () => {
     });
   }, []);
 
+
+
   const slideIn = (direction, type, delay, duration) => ({
     hidden: {
       x: direction === "left" ? "-100%" : direction === "right" ? "100%" : 0,
@@ -50,21 +52,34 @@ const ShaderGradientPage = () => {
     },
   });
 
+  useEffect(() => {
+    const wrapper = document.querySelector(".eagle");
 
-   const iframeRef = useRef(null);
+    const Trigger =  ScrollTrigger.create({
+      trigger: wrapper,
+      pin: true,
+      start: "top top",
+      end: "+=1500px",
+    })
+    let tl = gsap.timeline()
 
-   useEffect(() => {
-     gsap.to(iframeRef.current, {
-       x: () => window.innerWidth + iframeRef.current.offsetWidth,
-       y: () => window.innerHeight + iframeRef.current.offsetHeight,
+    tl.to(wrapper, {
+       x:"110vw",
+       y:"80vh",
        scrollTrigger: {
-         trigger: iframeRef.current,
-         start: "bottom bottom",
-         end: "top top",
-         scrub: 1, 
-       },
-     });
-   }, []);
+         start: () => Trigger?.start,
+         end: () => Trigger?.end,
+         scrub:2,
+       }
+    })
+
+    return () => {
+      Trigger.kill()
+      tl.kill()
+    }
+  }, []);
+
+
   return (
     <div className="relative overflow-hidden ">
       <img
@@ -75,11 +90,16 @@ const ShaderGradientPage = () => {
 
       <img
         ref={imageRef}
-        className="absolute sm:w-40 w-24 sm:top-[400px] top-[300px] right-16 sm:right-52 z-[100] "
+        className="astro absolute sm:w-40 w-24 sm:top-[400px] top-[300px] right-16 sm:right-52 z-[100] "
         src="/spaceman.webp"
         alt="spaceman"
       />
 
+      <img
+        className="eagle z-[100] w-[250px] absolute top-0 -left-44 overflow-y-hidden"
+        src="/eagle.gif"
+        alt="eagle"
+      />
       <motion.div
         initial="hidden"
         whileInView="show"
@@ -728,13 +748,6 @@ const ShaderGradientPage = () => {
           </div>
         </a>
       </motion.div>
-
-      <iframe
-        className="z-[100] absolute -top-10 -left-52 overflow-y-hidden"
-        ref={iframeRef}
-        src="https://lottie.host/embed/54bae342-18ba-4a53-ae39-71d37864b260/EKvSaVX4im.json"
-      ></iframe>
-
       <motion.div
         initial="hidden"
         whileInView="show"

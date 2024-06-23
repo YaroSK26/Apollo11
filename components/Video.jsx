@@ -25,6 +25,15 @@ const Video = () => {
   const magnetoRefs = useRef([]);
   const magnetoTextRefs = useRef([]);
 
+  const getYearsSince1969 = () => {
+    const startDate = new Date("July 16, 1969");
+    const today = new Date();
+    const yearsDifference = today.getFullYear() - startDate.getFullYear();
+    return yearsDifference;
+  };
+
+  const yearsSince1969 = getYearsSince1969();
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -101,7 +110,7 @@ const Video = () => {
     };
 
     const counters = [
-      { id: "count1", start: 0, end: 55, duration: 3000 },
+      { id: "count1", start: 0, end: yearsSince1969, duration: 3000 },
       { id: "count2", start: 100, end: 600, duration: 3500 },
       { id: "count3", start: 0, end: 8, duration: 4000 },
     ];
@@ -113,7 +122,8 @@ const Video = () => {
         onEnter: () => counter(id, start, end, duration),
       });
     });
-  }, []);
+  }, [yearsSince1969]);
+
 
   return (
     <div className="bg-[#080808] flex justify-center items-center flex-col pb-28 bg-video pt-5">
@@ -150,7 +160,7 @@ const Video = () => {
                 <path d="M16 18h.01" />
               </svg>
               <h2 id="count1" className="text-3xl font-bold text-[#6E06D4]">
-                55
+                {yearsSince1969}
               </h2>
               <p>years ago</p>
             </div>
@@ -204,7 +214,7 @@ const Video = () => {
               <h2 id="count3" className="text-3xl font-bold text-[#6E06D4]">
                 8
               </h2>
-              <p>days in the space</p>
+              <p>days duration of the mission</p>
             </div>
           </motion.div>
         </div>

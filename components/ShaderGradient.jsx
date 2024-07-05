@@ -2,7 +2,8 @@
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { FaPlay, FaPause } from "react-icons/fa";
 import "../css/letter.css";
 
 const ShaderGradientPage = () => {
@@ -78,6 +79,27 @@ const ShaderGradientPage = () => {
       tl.kill()
     }
   }, []);
+
+
+
+
+    const [isPlaying, setIsPlaying] = useState(false);
+    const audioUrl =
+      "https://upload.wikimedia.org/wikipedia/commons/e/e0/Phrase_de_Neil_Armstrong.oga";
+
+    const togglePlayPause = () => {
+      const audio = document.getElementById("audio");
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play();
+      }
+      setIsPlaying(!isPlaying);
+    };
+
+    const handleAudioEnd = () => {
+      setIsPlaying(false);
+    };
 
 
   return (
@@ -186,28 +208,12 @@ const ShaderGradientPage = () => {
               <span className="letter">n</span>
               <span className="letter">g</span>
             </h1>
-            <a
-              className="sound"
-              target="_blank"
-              href="https://sk.wikipedia.org/wiki/S%C3%BAbor:Phrase_de_Neil_Armstrong.oga"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-volume-2"
-              >
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-              </svg>
-            </a>
+            <div className="flex justify-center items-center">
+              <audio id="audio" src={audioUrl} onEnded={handleAudioEnd} />
+              <button onClick={togglePlayPause}>
+                {isPlaying ? <FaPause /> : <FaPlay />}
+              </button>
+            </div>
           </div>
         </div>
         <a className="w-[160px] block" href="#astronauts">

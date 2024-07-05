@@ -118,7 +118,7 @@ const ShaderGradientPage = () => {
       />
 
       <img
-        className="eagle z-[100] w-[250px] absolute top-0 -left-44 overflow-y-hidden"
+        className="eagle z-[100] w-[250px] absolute top-0 -left-48 overflow-y-hidden"
         src="/eagle.gif"
         alt="eagle"
       />

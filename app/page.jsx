@@ -85,7 +85,7 @@ useEffect(() => {
       <ShaderGradientPage></ShaderGradientPage>
       <Apollo11></Apollo11>
       <Experience></Experience>
-      {showRocket && <Rocket3D />}
+      {/* {showRocket && <Rocket3D />} */}
       <Video></Video>
       <Footer></Footer>
     </div>

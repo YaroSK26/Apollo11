@@ -8,6 +8,7 @@ import Apollo11 from "@/components/Apollo11";
 import Experience from "@/components/Experience";
 import Video from "@/components/Video";
 import Footer from "@/components/Footer";
+import { TextRevealDemo } from "@/components/TextReveal";
 
 const App = () => {
 
@@ -41,7 +42,6 @@ useEffect(() => {
 
   window.addEventListener("resize", checkScreenSize);
 
-  // Call the function initially to check if the screen size is already 1500px or more
   checkScreenSize();
 
   return () => {
@@ -87,6 +87,7 @@ useEffect(() => {
       <Experience></Experience>
       {/* {showRocket && <Rocket3D />} */}
       <Video></Video>
+      <TextRevealDemo></TextRevealDemo>
       <Footer></Footer>
     </div>
   );

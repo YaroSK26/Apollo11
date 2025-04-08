@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 
 const Footer = () => {
   const slideIn = (direction, type, delay, duration) => ({
@@ -104,7 +104,7 @@ const Footer = () => {
               &copy; Created by&nbsp;
               <a
                 className="border-b-white border-b-2 shine"
-                href="https://www.jaroslav.website/"
+                href="https://www.jaroslav-portfolio.eu/"
                 target="_blank"
               >
                 Jaroslav Barabáš
